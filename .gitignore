@@ -389,9 +389,9 @@ MigrationBackup/
 ExportedObj/
 2020.1.17f1/
 .consulo/
-*.csproj
-*.unityproj
-*.sln
+# *.csproj
+# *.unityproj
+# *.sln
 *.suo
 *.tmp
 *.user
