@@ -6,10 +6,15 @@ public class Spawner2D : MonoBehaviour
 {
     public GameObject spawnTarget = null;
 
-    Spawner2D(string s)
+    public Spawner2D(string s)
     {
 	    spawnTarget = Resources.Load<GameObject>(s);
     }
+
+    public Spawner2D(GameObject target)
+	{
+        spawnTarget = target;
+	}
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +27,13 @@ public class Spawner2D : MonoBehaviour
         
     }
 
-    void Spawn(float x, float y)
+    public void Spawn(float x, float y)
 	{
+        Vector3 pos = new Vector3(x, y, 0);
+        Instantiate(spawnTarget, pos, Quaternion.Euler(0,0,0));
+    }
 
-	}
-
-    IEnumerable Spawn(Vector2 MinDot, Vector2 MaxDot, float timer)
+    public IEnumerable Spawn(Vector2 MinDot, Vector2 MaxDot, float timer)
     {
 	    while (true)
 	    {
