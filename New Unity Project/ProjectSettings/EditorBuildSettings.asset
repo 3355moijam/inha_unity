@@ -6,15 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/01Basic.unity
-    guid: e1eb4aa7c4dc8e04dbdfc840a49bf7d8
+    path: Assets/Resources/Scenes/00 Start.unity
+    guid: d2227c89c4894b140b2a688d6de36e37
   - enabled: 1
-    path: Assets/Scenes/AutoCarAI.unity
-    guid: 66faf51fe1ff98f4ca73205317e19c5d
+    path: Assets/Resources/Scenes/08 Terrain.unity
+    guid: 038b22493d054944db21cfcfa57efd16
   - enabled: 1
-    path: Assets/Scenes/FlappyOver.unity
-    guid: 6e38ec49dd3f2a840b8597c3480008f8
-  - enabled: 1
-    path: Assets/Scenes/04Prefab.unity
-    guid: 423c57d72dcc7ad45a17721857529ad4
+    path: Assets/Resources/Scenes/10 Loading.unity
+    guid: 867b618711b889b4ea02acd40bd50e30
   m_configObjects: {}

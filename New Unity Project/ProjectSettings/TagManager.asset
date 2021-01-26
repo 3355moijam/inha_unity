@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - TTTT
   - NPC
+  - Item
+  - Bullet
+  - Sword
+  - FinishLine
   layers:
   - Default
   - TransparentFX
