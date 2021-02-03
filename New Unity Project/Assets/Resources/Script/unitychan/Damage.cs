@@ -23,9 +23,9 @@ public class Damage : MonoBehaviour
 		Debug.Log("아파");
 		foreach (Material material in materials)
 		{
-			material.color = Color.red;
+			material.color = Color.white;
 		}
-		Invoke("RestoreMaterial", 0.0f);
+		Invoke("RestoreMaterial", 0.1f);
 	}
 
 	private void RestoreMaterial()

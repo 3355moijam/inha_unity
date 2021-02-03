@@ -50,5 +50,9 @@ public class PlayerBullet2D : MonoBehaviour
             Destroy(this.gameObject);
 
 		}
+        else if(collision.tag == "Wall")
+		{
+            Destroy(gameObject);
+		}
 	}
 }

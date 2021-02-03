@@ -52,6 +52,7 @@ public class Player2D : MonoBehaviour
 		{
 			Debug.Log("<color=red>Hit! </color> Current HP: " + HP);
 			HP -= 10;
+			GameManager.Instance.CurrentHP = HP;
 			Destroy(other.gameObject); // 지연시간을 주면 사운드를 플레이하고 사라지는 등의 연출이 가능
 			/*
 			 * if hp <= 0
