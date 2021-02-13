@@ -423,5 +423,6 @@ crashlytics-build.properties
 InitTestScene*.unity.meta
 InitTestScene*.unity
 
-
+# large modeling
+*.fbx
 # End of https://www.toptal.com/developers/gitignore/api/unity
