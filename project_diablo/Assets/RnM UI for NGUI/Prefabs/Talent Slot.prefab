@@ -64,7 +64,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 16
   mHeight: 12
-  mDepth: 26
+  mDepth: 31
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 28
   mHeight: 28
-  mDepth: 25
+  mDepth: 30
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 51
   mHeight: 51
-  mDepth: 24
+  mDepth: 29
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 50
   mHeight: 50
-  mDepth: 23
+  mDepth: 28
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -380,8 +380,6 @@ GameObject:
   - component: {fileID: 11400006}
   - component: {fileID: 11400008}
   - component: {fileID: 6500000}
-  - component: {fileID: 11400014}
-  - component: {fileID: 11400016}
   m_Layer: 8
   m_Name: Talent Slot
   m_TagString: Untagged
@@ -482,7 +480,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 66
   mHeight: 66
-  mDepth: 22
+  mDepth: 27
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -517,27 +515,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 56, y: 56, z: 0}
   m_Center: {x: -1, y: 0, z: 0}
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e3e080770fe9d4095f45444f83be73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3f795f7729aa6d4f8f3d5d669ca8e71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

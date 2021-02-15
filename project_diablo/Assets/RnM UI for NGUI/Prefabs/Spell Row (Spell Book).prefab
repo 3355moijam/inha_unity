@@ -64,7 +64,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 41
   mHeight: 41
-  mDepth: 7
+  mDepth: 18
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 218
   mHeight: 22
-  mDepth: 11
+  mDepth: 22
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 218
   mHeight: 14
-  mDepth: 10
+  mDepth: 21
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -300,8 +300,6 @@ GameObject:
   - component: {fileID: 400006}
   - component: {fileID: 11400004}
   - component: {fileID: 11400010}
-  - component: {fileID: 11400030}
-  - component: {fileID: 11400032}
   m_Layer: 8
   m_Name: Spell Row (Spell Book)
   m_TagString: Untagged
@@ -377,36 +375,12 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 376
   mHeight: 86
-  mDepth: 1
+  mDepth: 12
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 4.372093
---- !u!114 &11400030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e3e080770fe9d4095f45444f83be73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3f795f7729aa6d4f8f3d5d669ca8e71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &100008
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +446,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 18
   mHeight: 30
-  mDepth: 3
+  mDepth: 14
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -573,12 +547,12 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 28
   mHeight: 10
-  mDepth: 4
+  mDepth: 15
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 2.6
+  aspectRatio: 2.8
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 8a37983d9cd63ec448170f1aae8bf347, type: 3}
@@ -743,7 +717,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 56
   mHeight: 56
-  mDepth: 5
+  mDepth: 16
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -843,7 +817,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 41
   mHeight: 41
-  mDepth: 6
+  mDepth: 17
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -936,7 +910,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 42
   mHeight: 42
-  mDepth: 8
+  mDepth: 19
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1022,7 +996,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 42
   mHeight: 42
-  mDepth: 9
+  mDepth: 20
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1108,7 +1082,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 376
   mHeight: 66
-  mDepth: 2
+  mDepth: 13
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0

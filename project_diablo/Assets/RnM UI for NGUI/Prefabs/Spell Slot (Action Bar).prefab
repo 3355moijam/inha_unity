@@ -64,7 +64,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 51
   mHeight: 51
-  mDepth: 2
+  mDepth: 7
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 52
   mHeight: 52
-  mDepth: 3
+  mDepth: 8
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -237,7 +237,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 51
   mHeight: 51
-  mDepth: 1
+  mDepth: 6
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -279,8 +279,6 @@ GameObject:
   - component: {fileID: 11400012}
   - component: {fileID: 11400006}
   - component: {fileID: 6500000}
-  - component: {fileID: 11400010}
-  - component: {fileID: 11400016}
   m_Layer: 8
   m_Name: Spell Slot (Action Bar)
   m_TagString: Untagged
@@ -381,7 +379,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 68
   mHeight: 68
-  mDepth: 0
+  mDepth: 5
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -416,30 +414,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 56, y: 56, z: 0}
   m_Center: {x: -1, y: 0, z: 0}
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e3e080770fe9d4095f45444f83be73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3f795f7729aa6d4f8f3d5d669ca8e71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &100008
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +478,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 52
   mHeight: 52
-  mDepth: 4
+  mDepth: 9
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0

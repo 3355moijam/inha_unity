@@ -64,7 +64,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 70
   mHeight: 16
-  mDepth: 35
+  mDepth: 48
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 70
   mHeight: 16
-  mDepth: 35
+  mDepth: 47
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -266,7 +266,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 70
   mHeight: 16
-  mDepth: 35
+  mDepth: 46
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 70
   mHeight: 16
-  mDepth: 35
+  mDepth: 45
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -468,7 +468,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 70
   mHeight: 16
-  mDepth: 35
+  mDepth: 43
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 8
   mHeight: 15
-  mDepth: 38
+  mDepth: 51
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -716,7 +716,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 8
   mHeight: 15
-  mDepth: 34
+  mDepth: 42
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -803,7 +803,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 8
   mHeight: 15
-  mDepth: 37
+  mDepth: 50
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -890,7 +890,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 8
   mHeight: 15
-  mDepth: 36
+  mDepth: 49
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -977,7 +977,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 8
   mHeight: 15
-  mDepth: 35
+  mDepth: 44
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1011,8 +1011,6 @@ GameObject:
   - component: {fileID: 11400014}
   - component: {fileID: 11400026}
   - component: {fileID: 6500002}
-  - component: {fileID: 11400032}
-  - component: {fileID: 11400034}
   m_Layer: 8
   m_Name: Slider Advanced
   m_TagString: Untagged
@@ -1093,7 +1091,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 530
   mHeight: 11
-  mDepth: 32
+  mDepth: 40
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -1128,30 +1126,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 530, y: 11, z: 0}
   m_Center: {x: 265, y: -5.5, z: 0}
---- !u!114 &11400032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e3e080770fe9d4095f45444f83be73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3f795f7729aa6d4f8f3d5d669ca8e71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &100024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1190,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 494
   mHeight: 10
-  mDepth: 33
+  mDepth: 41
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1304,7 +1278,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 28
   mHeight: 36
-  mDepth: 39
+  mDepth: 52
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0

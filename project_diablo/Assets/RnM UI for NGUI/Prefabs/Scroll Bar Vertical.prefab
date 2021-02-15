@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 11400002}
   - component: {fileID: 11400000}
   - component: {fileID: 6500000}
-  - component: {fileID: 11400008}
-  - component: {fileID: 11400010}
   m_Layer: 8
   m_Name: Scroll Bar Vertical
   m_TagString: Untagged
@@ -95,7 +93,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 15
   mHeight: 480
-  mDepth: 6
+  mDepth: 8
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
@@ -130,30 +128,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15, y: 480, z: 0}
   m_Center: {x: 7.5, y: -240, z: 0}
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e3e080770fe9d4095f45444f83be73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3f795f7729aa6d4f8f3d5d669ca8e71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +210,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 9
   mHeight: 475
-  mDepth: 7
+  mDepth: 9
   mMat: {fileID: 0}
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
