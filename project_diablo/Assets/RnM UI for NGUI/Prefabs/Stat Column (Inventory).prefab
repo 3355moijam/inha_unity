@@ -64,7 +64,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 64
   mHeight: 14
-  mDepth: 80
+  mDepth: 83
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 86
   mHeight: 14
-  mDepth: 79
+  mDepth: 82
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -212,8 +212,6 @@ GameObject:
   m_Component:
   - component: {fileID: 400004}
   - component: {fileID: 11400004}
-  - component: {fileID: 11400006}
-  - component: {fileID: 11400008}
   m_Layer: 8
   m_Name: Stat Column (Inventory)
   m_TagString: Untagged
@@ -270,33 +268,9 @@ MonoBehaviour:
   mPivot: 0
   mWidth: 166
   mHeight: 14
-  mDepth: 78
+  mDepth: 81
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 11.857142
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e3e080770fe9d4095f45444f83be73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3f795f7729aa6d4f8f3d5d669ca8e71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
