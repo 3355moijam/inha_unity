@@ -39,10 +39,7 @@ public class Player : MonoBehaviour
 		}
         if (!agent.isStopped)
         {
-            Vector3 lookRotation = agent.steeringTarget - transform.position;
-			//Debug.Log(Quaternion.LookRotation(lookrotation));
-			if (Quaternion.LookRotation(lookRotation) != Quaternion.identity)
-				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), rotationSpeed * Time.deltaTime);
+            RotateToMoveDirection();
         }
     }
 	void SetDestination(RaycastHit hit)
@@ -68,6 +65,13 @@ public class Player : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         
         return Physics.Raycast(ray, out hit);
+    }
+
+    void RotateToMoveDirection()
+	{
+        Vector3 lookRotation = agent.steeringTarget - transform.position;
+        if (lookRotation != Vector3.zero)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), rotationSpeed * Time.deltaTime);
     }
 
 }
