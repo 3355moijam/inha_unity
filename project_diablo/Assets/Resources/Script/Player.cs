@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
 {
 	private NavMeshAgent agent = null;
 	private Animator animator = null;
-    private float rotationSpeed = 20;
     private Vector3 nextNode;
     // Start is called before the first frame update
     void Start()
@@ -103,6 +102,8 @@ public class Player : MonoBehaviour
     {
         //if (agent.path.corners.Length == 0)
         //	return;
+        if (agent == null)
+            return;
         for (int i = 0; i < agent.path.corners.Length; i++)
         {
             Gizmos.color = Color.blue;
