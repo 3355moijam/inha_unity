@@ -9364,8 +9364,6 @@ GameObject:
   - component: {fileID: 1389892246}
   - component: {fileID: 1389892245}
   - component: {fileID: 1389892244}
-  - component: {fileID: 1389892243}
-  - component: {fileID: 1389892242}
   - component: {fileID: 1389892247}
   m_Layer: 0
   m_Name: Camera
@@ -9374,82 +9372,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!111 &1389892242
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389892241}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0eb7d8718b17aec419f0421c41b8b053, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 0eb7d8718b17aec419f0421c41b8b053, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!114 &1389892243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389892241}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1389892246}
-  volumeLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  stopNaNPropagation: 1
-  finalBlitToCameraTarget: 0
-  antialiasingMode: 2
-  temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
-  subpixelMorphologicalAntialiasing:
-    quality: 2
-  fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
-  fog:
-    enabled: 1
-    excludeSkybox: 1
-  debugLayer:
-    lightMeter:
-      width: 512
-      height: 256
-      showCurves: 1
-    histogram:
-      width: 512
-      height: 256
-      channel: 3
-    waveform:
-      exposure: 0.12
-      height: 256
-    vectorscope:
-      size: 256
-      exposure: 0.12
-    overlaySettings:
-      linearDepth: 0
-      motionColorIntensity: 4
-      motionGridSize: 64
-      colorBlindnessType: 0
-      colorBlindnessStrength: 1
-  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
-  breakBeforeColorGrading: 0
-  m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
 --- !u!81 &1389892244
 AudioListener:
   m_ObjectHideFlags: 0
@@ -15480,6 +15402,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1096511624216328455, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
+      propertyPath: showData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096511624216328455, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
+      propertyPath: showPresets
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3613065226687655457, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -15529,9 +15459,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3613065226697170069, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613065226697170069, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: d6d27aec98b9e6e40bc22988869455e3, type: 2}
-    m_RemovedComponents:
-    - {fileID: 7471298246168531673, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
+      objectReference: {fileID: 9100000, guid: 9d056b2aeccdfc244a87042acf3cf32a, type: 2}
+    - target: {fileID: 3613065226697170069, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613065226697170069, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7471298246168531673, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
