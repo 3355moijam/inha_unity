@@ -10,14 +10,18 @@ public class Player : MonoBehaviour
 	private NavMeshAgent agent = null;
 	private Animator animator = null;
     private Vector3 nextNode;
-    // Start is called before the first frame update
-    void Start()
+    private ISkill[] mainSkills;
+    private ISkill selectedMainSkill;
+	// Start is called before the first frame update
+	void Start()
     {
 	    agent = GetComponent<NavMeshAgent>();
-        //agent.isStopped = true;
         agent.updateRotation = false;
 	    animator = GetComponent<Animator>();
-	    //agent.angularSpeed = 999;
+        
+        mainSkills = new ISkill[3];
+        mainSkills[0] = transform.Find("MainSkill").GetComponent<Beams>();
+        SetMainSkill(0);
     }
 
     // Update is called once per frame
@@ -42,7 +46,10 @@ public class Player : MonoBehaviour
 				}
 			}
 		}
-        if(nextNode != agent.steeringTarget)
+        UseMainSkill();
+
+
+        if (nextNode != agent.steeringTarget)
 		{
             RotateToMoveDirection();
         }
@@ -114,6 +121,27 @@ public class Player : MonoBehaviour
                 Gizmos.color = Color.red;
                 Gizmos.DrawLine(agent.path.corners[i - 1], agent.path.corners[i]);
             }
+        }
+    }
+
+    public void SetMainSkill(int num)
+	{
+        selectedMainSkill = mainSkills[num % mainSkills.Length];
+	}
+
+    void UseMainSkill()
+	{
+        if(Input.GetMouseButtonDown(1))
+		{
+            selectedMainSkill.OnButtonDown(animator, Vector3.zero, Vector3.zero);
+		}
+        else if (Input.GetMouseButton(1))
+        {
+            selectedMainSkill.OnButton(animator);
+        }
+        else if (Input.GetMouseButtonUp(1))
+		{
+            selectedMainSkill.OnButtonUp(animator);
         }
     }
 

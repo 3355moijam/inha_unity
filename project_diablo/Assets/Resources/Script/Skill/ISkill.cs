@@ -11,9 +11,10 @@ using UnityEngine;
 
 interface ISkill
 {
-	GameObject effect { get; set; }
-	void ActivateSkill(Animator animator, Vector3 position, Vector3 rotation);
-	void DeactivateSkill(Animator animator);
-	void Instantiate(Vector3 position, Vector3 rotation);
+	//Object[] runes { get; set; }
+	void OnButton(Animator animator);
+	void OnButtonUp(Animator animator);
+	void OnButtonDown(Animator animator, Vector3 position, Vector3 rotation);
+	void SetRune(int num);
 }
 

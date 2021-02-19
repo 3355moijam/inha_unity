@@ -4509,6 +4509,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b195ac8b00609694185c0005fcd1037f, type: 3}
   m_PrefabInstance: {fileID: 1833268271}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &585482007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 585482008}
+  m_Layer: 9
+  m_Name: SkillSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &585482008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585482007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1792407718}
+  m_Father: {fileID: 4982123413436475957}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &594319481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11069,6 +11100,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e97bd78cd82fbe94aadeebb05c61f0a2, type: 3}
+--- !u!1 &1673817970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1673817971}
+  - component: {fileID: 1673817972}
+  m_Layer: 9
+  m_Name: Rune
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1673817971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673817970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1792407718}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673817972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673817970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88852ca81a9cf174fbef8bcd4de8f241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect:
+  - {fileID: 158756, guid: 1bbb81013cb2ca248a474e0a154d3499, type: 3}
+  - {fileID: 168570, guid: e0d459d20e7b203478562f67a3ec3e85, type: 3}
+  - {fileID: 175948, guid: e11d377ade7a63647bc16232c9eabf8b, type: 3}
 --- !u!1001 &1677108307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12143,6 +12221,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06e64132e2a9b34fb3ed881a017496a, type: 3}
+--- !u!1 &1792407717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1792407718}
+  - component: {fileID: 1792407719}
+  m_Layer: 9
+  m_Name: MainSkill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1792407718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792407717}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1673817971}
+  m_Father: {fileID: 585482008}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1792407719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792407717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea907db1e09f92b46abd0a1e5d4d51ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1793254909 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a98318926d746c347a4e443946273241, type: 3}
@@ -15064,3 +15186,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
+--- !u!4 &4982123413436475957 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3613065226688082497, guid: 79fcf26e95b3ca44ea03c6a0bb2d292d, type: 3}
+  m_PrefabInstance: {fileID: 4982123413436475956}
+  m_PrefabAsset: {fileID: 0}
