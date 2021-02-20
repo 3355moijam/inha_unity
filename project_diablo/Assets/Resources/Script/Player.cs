@@ -7,54 +7,65 @@ using UnityEngine.PlayerLoop;
 using DG.Tweening;
 public class Player : MonoBehaviour
 {
-	private NavMeshAgent agent = null;
-	private Animator animator = null;
-    private Vector3 nextNode;
-    private ISkill[] mainSkills;
-    private ISkill selectedMainSkill;
-	// Start is called before the first frame update
-	void Start()
+	NavMeshAgent agent = null;
+	Animator animator = null;
+    Vector3 nextNode;
+    ISkill[] mainSkills;
+    ISkill selectedMainSkill;
+    
+    delegate void PlayerAction(RaycastHit hit);
+    List<PlayerAction> Actions;
+    PlayerAction setDest;
+    PlayerAction useMainSkill;
+    // Start is called before the first frame update
+    void Start()
     {
 	    agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
 	    animator = GetComponent<Animator>();
         
         mainSkills = new ISkill[3];
-        mainSkills[0] = transform.Find("MainSkill").GetComponent<Beams>();
+        mainSkills[0] = transform.Find("SkillManager/MainSkill").GetComponent<Beams>();
         SetMainSkill(0);
+        Actions = new List<PlayerAction>();
+        setDest = new PlayerAction(SetDestination);
+        //useMainSkill = new PlayerAction();
     }
 
     // Update is called once per frame
     void Update()
     {
+        RaycastHit hit;
+        CheckRaycast(out hit);
         if (Input.GetMouseButton(0))
 		{
-            RaycastHit hit;
-            if (CheckRaycast(out hit))
-            {
-                if (!EventSystem.current.IsPointerOverGameObject())
-                { 
-                    Debug.Log(hit.transform.tag);
-                    if(hit.transform.tag == "Enemy")
-					{
+            if (!EventSystem.current.IsPointerOverGameObject())
+            { 
+                Debug.Log(hit.transform.tag);
+                if(hit.transform.tag == "Enemy")
+				{
 
-					}
-					else
-					{
-                        SetDestination(hit);
-					}
+				}
+				else
+				{
+                    Actions.Add(setDest);
 				}
 			}
 		}
+        
         UseMainSkill();
 
+        if(!(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("Run")))
+		{
+            agent.isStopped = true;
+            agent.ResetPath();
+		}
 
         if (nextNode != agent.steeringTarget)
 		{
             RotateToMoveDirection();
         }
-        Debug.Log(agent.isStopped);
-        Debug.Log(agent.steeringTarget);
+
     }
     
     void LateUpdate()
@@ -68,9 +79,6 @@ public class Player : MonoBehaviour
         
         if (Physics.Raycast(ray, out hit))
 		{
-            //agent.enabled = false;
-            //transform.LookAt(hit.point);
-            //agent.enabled = true;
             agent.destination = hit.point;
             agent.stoppingDistance = 1.0f;
             agent.isStopped = false;
@@ -91,18 +99,6 @@ public class Player : MonoBehaviour
         nextNode = agent.steeringTarget;
         Vector3 lookRotation = nextNode - transform.position;
         transform.DORotateQuaternion(Quaternion.LookRotation(lookRotation), 0.3f);
-    }
-
-    public void setZero()
-    {
-        agent.speed = 0.0f;
-        agent.updatePosition = false;
-        agent.updateRotation = false;
-        agent.velocity = Vector3.zero;
-        agent.isStopped = true;
-        agent.destination = agent.transform.position;
-        agent.ResetPath();
-        // agent.acceleration = float.MaxValue;
     }
 
     private void OnDrawGizmos()
@@ -135,11 +131,11 @@ public class Player : MonoBehaviour
 		{
             selectedMainSkill.OnButtonDown(animator, Vector3.zero, Vector3.zero);
 		}
-        else if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             selectedMainSkill.OnButton(animator);
         }
-        else if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1))
 		{
             selectedMainSkill.OnButtonUp(animator);
         }

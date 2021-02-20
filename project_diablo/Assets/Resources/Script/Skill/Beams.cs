@@ -23,6 +23,7 @@ public class Beams : MonoBehaviour, ISkill
 	public void OnButtonDown(Animator animator, Vector3 position, Vector3 rotation)
 	{
 		selectedRune.OnButtonDown(animator, position, rotation);
+		//Debug.Log("");
 	}
 
 	public void OnButton(Animator animator)

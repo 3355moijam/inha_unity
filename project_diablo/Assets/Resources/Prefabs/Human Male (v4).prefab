@@ -2674,21 +2674,13 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3613065226687655457}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 04a905f024e5dc54087fe538dbe25688, type: 3}
-  m_Controller: {fileID: 9100000, guid: 767b6951a97a9472aa7cd56f85324c6e, type: 2}
+  m_Avatar: {fileID: 9000000, guid: e2fdb3d767c67b340892cd614038bba9, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9d056b2aeccdfc244a87042acf3cf32a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'EyeR'\n\tTransform 'EyeL'\n\tTransform 'EyeR'\n\tTransform
-    'EyeL'\n\tTransform 'EyeR'\n\tTransform 'EyeL'\n\tFrom animation clip 'WalkBack'\n\tFrom
-    animation clip 'Idle_Combat'\n\tFrom animation clip 'Walk'\n\tFrom animation
-    clip 'Run'\n\tFrom animation clip 'BowShoot_R_01_Aim'\n\tFrom animation clip
-    'BowShoot_R_01_Setup'\n\tFrom animation clip 'Attack01a'\n\tFrom animation clip
-    'Attack01b'\n\tFrom animation clip 'Attack02a'\n\tFrom animation clip 'Attack02b'\n\tand
-    more ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
