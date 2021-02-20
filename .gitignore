@@ -424,6 +424,8 @@ InitTestScene*.unity.meta
 InitTestScene*.unity
 
 # large file ignore
+
 *.fbx
 *.psd
+!project_diablo/Assets/Resources/Anim/*.FBX
 # End of https://www.toptal.com/developers/gitignore/api/unity
