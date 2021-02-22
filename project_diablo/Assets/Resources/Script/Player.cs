@@ -7,9 +7,17 @@ using UnityEngine.PlayerLoop;
 using DG.Tweening;
 public class Player : MonoBehaviour
 {
-	NavMeshAgent agent = null;
-	Animator animator = null;
+	NavMeshAgent sAgent = null;
+    [HideInInspector]
+    public NavMeshAgent agent { get => sAgent; }
+	Animator sAnimator = null;
+    [HideInInspector]
+    public Animator animator { get => sAnimator; }
+
+
     Vector3 nextNode;
+
+    //skill
     ISkill[] mainSkills;
     ISkill selectedMainSkill;
     
@@ -20,26 +28,30 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-	    agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-	    animator = GetComponent<Animator>();
+	    sAgent = GetComponent<NavMeshAgent>();
+        sAgent.updateRotation = false;
+	    sAnimator = GetComponent<Animator>();
         
         mainSkills = new ISkill[3];
         mainSkills[0] = transform.Find("SkillManager/MainSkill").GetComponent<Beams>();
         SetMainSkill(0);
+
+        // 스킬 액션 순서처리
         Actions = new List<PlayerAction>();
         setDest = new PlayerAction(SetDestination);
-        //useMainSkill = new PlayerAction();
+		useMainSkill = new PlayerAction(selectedMainSkill.OnButton);
+
+		GameManager.Instance.player = this;
     }
 
     // Update is called once per frame
     void Update()
     {
         RaycastHit hit;
-        CheckRaycast(out hit);
+        bool isHit = CheckRaycast(out hit);
         if (Input.GetMouseButton(0))
 		{
-            if (!EventSystem.current.IsPointerOverGameObject())
+            if (isHit && !EventSystem.current.IsPointerOverGameObject())
             { 
                 Debug.Log(hit.transform.tag);
                 if(hit.transform.tag == "Enemy")
@@ -48,20 +60,15 @@ public class Player : MonoBehaviour
 				}
 				else
 				{
-                    Actions.Add(setDest);
+                    //Actions.Add(setDest);
+                    SetDestination(hit);
 				}
 			}
 		}
         
-        UseMainSkill();
+        UseMainSkill(hit);
 
-        if(!(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") || animator.GetCurrentAnimatorStateInfo(0).IsName("Run")))
-		{
-            agent.isStopped = true;
-            agent.ResetPath();
-		}
-
-        if (nextNode != agent.steeringTarget)
+        if (nextNode != sAgent.steeringTarget)
 		{
             RotateToMoveDirection();
         }
@@ -70,20 +77,16 @@ public class Player : MonoBehaviour
     
     void LateUpdate()
     {
-	    animator.SetFloat("Speed", agent.velocity.magnitude);
+	    sAnimator.SetFloat("Speed", sAgent.velocity.magnitude);
     }
 	void SetDestination(RaycastHit hit)
 	{
 		
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-        if (Physics.Raycast(ray, out hit))
-		{
-            agent.destination = hit.point;
-            agent.stoppingDistance = 1.0f;
-            agent.isStopped = false;
-			RotateToMoveDirection();
-		}
+        sAgent.destination = hit.point;
+        sAgent.stoppingDistance = 1.0f;
+        sAgent.isStopped = false;
+		RotateToMoveDirection();
+        sAnimator.SetTrigger("Run");
 
 	}
 
@@ -96,28 +99,9 @@ public class Player : MonoBehaviour
 
     void RotateToMoveDirection()
 	{
-        nextNode = agent.steeringTarget;
+        nextNode = sAgent.steeringTarget;
         Vector3 lookRotation = nextNode - transform.position;
         transform.DORotateQuaternion(Quaternion.LookRotation(lookRotation), 0.3f);
-    }
-
-    private void OnDrawGizmos()
-    {
-        //if (agent.path.corners.Length == 0)
-        //	return;
-        if (agent == null)
-            return;
-        for (int i = 0; i < agent.path.corners.Length; i++)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(agent.path.corners[i], 0.3f);
-
-            if (i > 0)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(agent.path.corners[i - 1], agent.path.corners[i]);
-            }
-        }
     }
 
     public void SetMainSkill(int num)
@@ -125,19 +109,44 @@ public class Player : MonoBehaviour
         selectedMainSkill = mainSkills[num % mainSkills.Length];
 	}
 
-    void UseMainSkill()
+    public void MoveStop()
+	{
+        sAgent.isStopped = true;
+        sAgent.ResetPath();
+    }
+
+    void UseMainSkill(RaycastHit hit)
 	{
         if(Input.GetMouseButtonDown(1))
 		{
-            selectedMainSkill.OnButtonDown(animator, Vector3.zero, Vector3.zero);
+            selectedMainSkill.OnButtonDown(hit);
 		}
         if (Input.GetMouseButton(1))
         {
-            selectedMainSkill.OnButton(animator);
+            selectedMainSkill.OnButton(hit);
         }
         if (Input.GetMouseButtonUp(1))
 		{
-            selectedMainSkill.OnButtonUp(animator);
+            selectedMainSkill.OnButtonUp(hit);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        //if (agent.path.corners.Length == 0)
+        //	return;
+        if (sAgent == null)
+            return;
+        for (int i = 0; i < sAgent.path.corners.Length; i++)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(sAgent.path.corners[i], 0.3f);
+
+            if (i > 0)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(sAgent.path.corners[i - 1], sAgent.path.corners[i]);
+            }
         }
     }
 

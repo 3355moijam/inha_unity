@@ -20,24 +20,29 @@ public class Beams : MonoBehaviour, ISkill
         
     }
 
-	public void OnButtonDown(Animator animator, Vector3 position, Vector3 rotation)
+	public void OnButtonDown(RaycastHit hit)
 	{
-		selectedRune.OnButtonDown(animator, position, rotation);
+		selectedRune.OnButtonDown(hit);
 		//Debug.Log("");
 	}
 
-	public void OnButton(Animator animator)
+	public void OnButton(RaycastHit hit)
 	{
-		selectedRune.OnButton(animator);
+		selectedRune.OnButton(hit);
 	}
 
-	public void OnButtonUp(Animator animator)
+	public void OnButtonUp(RaycastHit hit)
 	{
-		selectedRune.OnButtonUp(animator);
+		selectedRune.OnButtonUp(hit);
 	}
 
 	public void SetRune(int num)
 	{
 		selectedRune = runes[num % runes.Length];
+	}
+
+	public bool HasAnimation()
+	{
+		return selectedRune.HasAnimation();
 	}
 }

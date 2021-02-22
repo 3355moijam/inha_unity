@@ -12,29 +12,32 @@ public class ArcaneBeam : MonoBehaviour, IRune
 		
 	}
 
-	public void OnButtonDown(Animator animator, Vector3 position, Vector3 rotation)
+	public void OnButtonDown(RaycastHit hit)
 	{
 		
 	}
 
-	public void OnButton(Animator animator)
+	public void OnButton(RaycastHit hit)
 	{
-		animator.SetBool("Beams", true);
+		GameManager.Instance.player.MoveStop();
+		GameManager.Instance.player.animator.SetBool("Beams", true);
 		
 		Transform playerTransform = GameObject.Find("Player").transform;
-		RaycastHit hit;
-		Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit);
 		Vector3 lookPosition = hit.point;
 		lookPosition.y = playerTransform.position.y;
 		playerTransform.LookAt(lookPosition);
 	}
 
-	public void OnButtonUp(Animator animator)
+	public void OnButtonUp(RaycastHit hit)
 	{
-		animator.SetBool("Beams", false);
+		GameManager.Instance.player.animator.SetBool("Beams", false);
 
 	}
 
+	public bool HasAnimation()
+	{
+		return true;
+	}
 	// Start is called before the first frame update
 	void Start()
     {
