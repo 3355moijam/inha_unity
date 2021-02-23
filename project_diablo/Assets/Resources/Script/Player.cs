@@ -18,10 +18,11 @@ public class Player : MonoBehaviour
     Vector3 nextNode;
 
     //skill
+    
     ISkill[] mainSkills;
     ISkill selectedMainSkill;
     
-    delegate void PlayerAction(RaycastHit hit);
+    delegate void PlayerAction();
     List<PlayerAction> Actions;
     PlayerAction setDest;
     PlayerAction useMainSkill;
@@ -47,28 +48,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        bool isHit = CheckRaycast(out hit);
-        if (Input.GetMouseButton(0))
-		{
-            if (isHit && !EventSystem.current.IsPointerOverGameObject())
-            { 
-                Debug.Log(hit.transform.tag);
-                if(hit.transform.tag == "Enemy")
-				{
+		ClickLeftMouseButton();
+        UseMainSkill();
 
-				}
-				else
-				{
-                    //Actions.Add(setDest);
-                    SetDestination(hit);
-				}
-			}
-		}
-        
-        UseMainSkill(hit);
+        if (Actions.Count > 0)
+            Actions[Actions.Count - 1]();
 
-        if (nextNode != sAgent.steeringTarget)
+		if (nextNode != sAgent.steeringTarget)
 		{
             RotateToMoveDirection();
         }
@@ -79,56 +65,93 @@ public class Player : MonoBehaviour
     {
 	    sAnimator.SetFloat("Speed", sAgent.velocity.magnitude);
     }
-	void SetDestination(RaycastHit hit)
+	void SetDestination()
 	{
 		
-        sAgent.destination = hit.point;
+        sAgent.destination = GameManager.Instance.mouseHit.point;
         sAgent.stoppingDistance = 1.0f;
         sAgent.isStopped = false;
 		RotateToMoveDirection();
-        sAnimator.SetTrigger("Run");
-
+        //sAnimator.SetTrigger("StartRun");
+        
 	}
 
-    bool CheckRaycast(out RaycastHit hit)
-	{
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-        return Physics.Raycast(ray, out hit);
-    }
+
 
     void RotateToMoveDirection()
 	{
+        
         nextNode = sAgent.steeringTarget;
         Vector3 lookRotation = nextNode - transform.position;
         transform.DORotateQuaternion(Quaternion.LookRotation(lookRotation), 0.3f);
+        
     }
 
     public void SetMainSkill(int num)
 	{
         selectedMainSkill = mainSkills[num % mainSkills.Length];
+        useMainSkill = new PlayerAction(selectedMainSkill.OnButton);
 	}
 
     public void MoveStop()
 	{
         sAgent.isStopped = true;
         sAgent.ResetPath();
+        nextNode = sAgent.steeringTarget;
     }
 
-    void UseMainSkill(RaycastHit hit)
+    void UseMainSkill()
 	{
         if(Input.GetMouseButtonDown(1))
 		{
-            selectedMainSkill.OnButtonDown(hit);
+            if (selectedMainSkill.HasAnimation() && !Actions.Contains(useMainSkill))
+                Actions.Add(useMainSkill);
+
+			selectedMainSkill.OnButtonDown();
 		}
-        if (Input.GetMouseButton(1))
-        {
-            selectedMainSkill.OnButton(hit);
-        }
+        //if (Input.GetMouseButton(1))
+        //{
+            //selectedMainSkill.OnButton(hit);
+        //}
         if (Input.GetMouseButtonUp(1))
 		{
-            selectedMainSkill.OnButtonUp(hit);
+            if (selectedMainSkill.HasAnimation())
+                Actions.Remove(useMainSkill);
+
+			selectedMainSkill.OnButtonUp();
+		}
+    }
+
+
+    void ClickLeftMouseButton()
+	{
+        if (Input.GetMouseButtonDown(0))
+		{
+            if (GameManager.Instance.mouseHit.transform != null && !EventSystem.current.IsPointerOverGameObject())
+            {
+                if (GameManager.Instance.mouseHit.transform.tag == "Enemy")
+                {
+
+                }
+                else
+                {
+                    if (!Actions.Contains(setDest)) 
+                        Actions.Add(setDest);
+                    animator.SetTrigger("StartRun");
+                    //SetDestination(hit);
+                }
+            }
         }
+        if (Input.GetMouseButtonUp(0))
+		{
+            Actions.Remove(setDest);
+            // 마지막에 눌린 액션에 따라 해당 액션이 재개되게 하는 함수 제작을 고려할 필요 있음.
+            if (animator.GetBool("BeamsOn") && !animator.GetCurrentAnimatorStateInfo(0).IsName("BeamsOn")) // 하드코딩
+            {
+                animator.SetTrigger("StartBeams");
+                MoveStop();
+            }
+		}
     }
 
     private void OnDrawGizmos()
@@ -149,5 +172,4 @@ public class Player : MonoBehaviour
             }
         }
     }
-
 }

@@ -12,9 +12,9 @@ using UnityEngine;
 interface ISkill
 {
 	//Object[] runes { get; set; }
-	void OnButtonDown(RaycastHit hit);
-	void OnButton(RaycastHit hit);
-	void OnButtonUp(RaycastHit hit);
+	void OnButtonDown();
+	void OnButton();
+	void OnButtonUp();
 	bool HasAnimation();
 	void SetRune(int num);
 }

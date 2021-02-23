@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FunctionLibrary;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public Player player { get; set; }
+    RaycastHit hit;
+    public RaycastHit mouseHit { get => hit; }
 
     private void Awake()
     {
@@ -33,8 +36,8 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        Functions.CheckRaycast(out hit);
     }
 }

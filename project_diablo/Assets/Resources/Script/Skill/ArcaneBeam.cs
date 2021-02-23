@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using FunctionLibrary;
 public class ArcaneBeam : MonoBehaviour, IRune
 {
 	public GameObject[] effect;
@@ -12,25 +12,25 @@ public class ArcaneBeam : MonoBehaviour, IRune
 		
 	}
 
-	public void OnButtonDown(RaycastHit hit)
-	{
-		
-	}
-
-	public void OnButton(RaycastHit hit)
+	public void OnButtonDown()
 	{
 		GameManager.Instance.player.MoveStop();
-		GameManager.Instance.player.animator.SetBool("Beams", true);
-		
-		Transform playerTransform = GameObject.Find("Player").transform;
-		Vector3 lookPosition = hit.point;
-		lookPosition.y = playerTransform.position.y;
-		playerTransform.LookAt(lookPosition);
+		DG.Tweening.DOTween.Kill(GameManager.Instance.player.transform);
+		GameManager.Instance.player.animator.SetTrigger("StartBeams");
+		//LookHitPoint(hit);
 	}
 
-	public void OnButtonUp(RaycastHit hit)
+	public void OnButton()
 	{
-		GameManager.Instance.player.animator.SetBool("Beams", false);
+		GameManager.Instance.player.MoveStop();
+		GameManager.Instance.player.animator.SetBool("BeamsOn", true);
+
+		//LookHitPoint(hit);
+	}
+
+	public void OnButtonUp()
+	{
+		GameManager.Instance.player.animator.SetBool("BeamsOn", false);
 
 	}
 

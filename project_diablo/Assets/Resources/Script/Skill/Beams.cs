@@ -20,20 +20,20 @@ public class Beams : MonoBehaviour, ISkill
         
     }
 
-	public void OnButtonDown(RaycastHit hit)
+	public void OnButtonDown()
 	{
-		selectedRune.OnButtonDown(hit);
+		selectedRune.OnButtonDown();
 		//Debug.Log("");
 	}
 
-	public void OnButton(RaycastHit hit)
+	public void OnButton()
 	{
-		selectedRune.OnButton(hit);
+		selectedRune.OnButton();
 	}
 
-	public void OnButtonUp(RaycastHit hit)
+	public void OnButtonUp()
 	{
-		selectedRune.OnButtonUp(hit);
+		selectedRune.OnButtonUp();
 	}
 
 	public void SetRune(int num)
