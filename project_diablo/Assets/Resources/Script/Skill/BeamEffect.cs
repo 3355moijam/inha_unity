@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,17 +17,23 @@ public class BeamEffect : MonoBehaviour
     public float textureScrollSpeed = 8f; //How fast the texture scrolls along the beam
     public float textureLengthScale = 1f; //Length of the beam texture
     public float beamRange = 10f;
-
+    public bool isPierce = false;
     // Start is called before the first frame update
+    delegate void SkillType();
+    SkillType BeamType;
     void Start()
     {
         line = beam.GetComponent<LineRenderer>();
+        if (isPierce)
+            BeamType = new SkillType(ShootPierceBeamToMouse);
+        else
+            BeamType = new SkillType(ShootBeamToMouse);
     }
 
     // Update is called once per frame
     void Update()
     {
-        ShootBeamToMouse();
+        BeamType();
     }
 
     void ShootBeamToMouse()
@@ -34,7 +41,6 @@ public class BeamEffect : MonoBehaviour
         Vector3 start = transform.position;
         line.positionCount = 2;
         line.SetPosition(0, start);
-        //beamStart.transform.position = start;
         Vector3 dir = GameManager.Instance.mouseHit.point - start;
         dir.y = 0;
         dir.Normalize();
@@ -57,7 +63,37 @@ public class BeamEffect : MonoBehaviour
         line.sharedMaterial.mainTextureOffset -= new Vector2(Time.deltaTime * textureScrollSpeed, 0);
     }
 
-	private void OnDrawGizmos()
+    void ShootPierceBeamToMouse()
+    {
+        Vector3 start = transform.position;
+        line.positionCount = 2;
+        line.SetPosition(0, start);
+
+        Vector3 dir = GameManager.Instance.mouseHit.point - start;
+        dir.y = 0;
+        dir.Normalize();
+
+        Vector3 end = Vector3.zero;
+        RaycastHit[] hits = Physics.RaycastAll(start, dir, beamRange);
+        Array.Sort(hits, )
+
+        if (Physics.Raycast(start, dir, out hit, beamRange))
+            end = hit.point - (dir * beamEndOffset);
+        else
+            end = start + (dir * beamRange);
+
+        beamEnd.transform.position = end;
+        line.SetPosition(1, end);
+
+        beamStart.transform.LookAt(end);
+        beamEnd.transform.LookAt(start);
+
+        float distance = Vector3.Distance(start, end);
+        line.sharedMaterial.mainTextureScale = new Vector2(distance / textureLengthScale, 1);
+        line.sharedMaterial.mainTextureOffset -= new Vector2(Time.deltaTime * textureScrollSpeed, 0);
+    }
+
+    private void OnDrawGizmos()
 	{
         Gizmos.color = Color.cyan;
         Vector3 target, dir;
