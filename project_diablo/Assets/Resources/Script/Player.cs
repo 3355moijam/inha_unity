@@ -19,8 +19,8 @@ public class Player : MonoBehaviour
 
     //skill
     
-    ISkill[] mainSkills;
-    ISkill selectedMainSkill;
+    //ISkill[] mainSkills;
+    //ISkill SkillManager.Instance.MainSkill;
     
     delegate void PlayerAction();
     List<PlayerAction> Actions;
@@ -33,14 +33,14 @@ public class Player : MonoBehaviour
         sAgent.updateRotation = false;
 	    sAnimator = GetComponent<Animator>();
         
-        mainSkills = new ISkill[3];
-        mainSkills[0] = transform.Find("SkillManager/MainSkill").GetComponent<Beams>();
-        SetMainSkill(0);
+        
 
         // 스킬 액션 순서처리
         Actions = new List<PlayerAction>();
         setDest = new PlayerAction(SetDestination);
-		useMainSkill = new PlayerAction(selectedMainSkill.OnButton);
+		//ISkill test = SkillManager.Instance.MainSkill;
+
+		useMainSkill = new PlayerAction(SkillManager.Instance.MainSkill.OnButton);
 
 		GameManager.Instance.player = this;
     }
@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
 		RotateToMoveDirection();
         //sAnimator.SetTrigger("StartRun");
         
+        
 	}
 
 
@@ -87,12 +88,6 @@ public class Player : MonoBehaviour
         
     }
 
-    public void SetMainSkill(int num)
-	{
-        selectedMainSkill = mainSkills[num % mainSkills.Length];
-        useMainSkill = new PlayerAction(selectedMainSkill.OnButton);
-	}
-
     public void MoveStop()
 	{
         sAgent.isStopped = true;
@@ -104,21 +99,21 @@ public class Player : MonoBehaviour
 	{
         if(Input.GetMouseButtonDown(1))
 		{
-            if (selectedMainSkill.HasAnimation() && !Actions.Contains(useMainSkill))
+            if (SkillManager.Instance.MainSkill.HasAnimation() && !Actions.Contains(useMainSkill))
                 Actions.Add(useMainSkill);
 
-			selectedMainSkill.OnButtonDown();
+			SkillManager.Instance.MainSkill.OnButtonDown();
 		}
         //if (Input.GetMouseButton(1))
         //{
-            //selectedMainSkill.OnButton(hit);
+            //SkillManager.Instance.MainSkill.OnButton(hit);
         //}
         if (Input.GetMouseButtonUp(1))
 		{
-            if (selectedMainSkill.HasAnimation())
+            if (SkillManager.Instance.MainSkill.HasAnimation())
                 Actions.Remove(useMainSkill);
 
-			selectedMainSkill.OnButtonUp();
+			SkillManager.Instance.MainSkill.OnButtonUp();
 		}
     }
 

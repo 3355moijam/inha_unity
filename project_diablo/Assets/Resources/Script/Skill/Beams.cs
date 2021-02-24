@@ -11,7 +11,7 @@ public class Beams : MonoBehaviour, ISkill
     {
 		runes = new IRune[3];
 		runes[0] = GetComponentInChildren<ArcaneBeam>();
-		SetRune(0);
+		((ISkill)this).SetRune(0);
     }
 
     // Update is called once per frame
@@ -20,29 +20,30 @@ public class Beams : MonoBehaviour, ISkill
         
     }
 
-	public void OnButtonDown()
+	void ISkill.OnButtonDown()
 	{
 		selectedRune.OnButtonDown();
 		//Debug.Log("");
 	}
 
-	public void OnButton()
+	void ISkill.OnButton()
 	{
 		selectedRune.OnButton();
 	}
 
-	public void OnButtonUp()
+	void ISkill.OnButtonUp()
 	{
 		selectedRune.OnButtonUp();
 	}
 
-	public void SetRune(int num)
+	void ISkill.SetRune(int num)
 	{
 		selectedRune = runes[num % runes.Length];
 	}
 
-	public bool HasAnimation()
-	{
-		return selectedRune.HasAnimation();
-	}
+	bool ISkill.HasAnimation() => selectedRune.HasAnimation();
+
+	void ISkill.Init() => selectedRune.Init();
+
+	void ISkill.Clear() => selectedRune.Clear();
 }

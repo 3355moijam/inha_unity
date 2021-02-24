@@ -5,23 +5,26 @@ using UnityEngine;
 public class SkillManager : MonoBehaviour
 {
     ISkill[] mainSkills;
-    ISkill selectedMainSkill;
+    ISkill mainSkill;
+    public ISkill MainSkill { get => mainSkill; }
+
     static private SkillManager sInstance;
     static public SkillManager Instance
 	{
         get
 		{
-            if(sInstance == null)
+            if (sInstance == null)
+            {
                 sInstance = GameObject.Find("SkillManager").AddComponent<SkillManager>();
+                sInstance.Init();
+            }
             return sInstance;
 		}
 	}
     // Start is called before the first frame update
     void Start()
     {
-        mainSkills = new ISkill[3];
-        mainSkills[0] = GetComponentInChildren<Beams>();
-
+        
     }
 
     // Update is called once per frame
@@ -32,7 +35,14 @@ public class SkillManager : MonoBehaviour
 
     public void SetMainSkill(int num)
     {
-        selectedMainSkill = mainSkills[num % mainSkills.Length];
+        mainSkill = mainSkills[num % mainSkills.Length];
         //useMainSkill = new PlayerAction(selectedMainSkill.OnButton);
+    }
+
+    void Init()
+	{
+        mainSkills = new ISkill[3];
+        mainSkills[0] = GetComponentInChildren<Beams>();
+        SetMainSkill(0);
     }
 }

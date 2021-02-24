@@ -39,5 +39,13 @@ public class GameManager : MonoBehaviour
     void FixedUpdate()
     {
         Functions.CheckRaycast(out hit);
+        
+    }
+
+	private void OnDrawGizmos()
+	{
+        Gizmos.color = Color.black;
+        Gizmos.DrawSphere(mouseHit.point, 1);
+
     }
 }

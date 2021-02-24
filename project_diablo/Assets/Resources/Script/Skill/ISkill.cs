@@ -9,7 +9,7 @@ using UnityEngine;
  * 3. 대미지 처리
  */
 
-interface ISkill
+public interface ISkill
 {
 	//Object[] runes { get; set; }
 	void OnButtonDown();
@@ -17,5 +17,8 @@ interface ISkill
 	void OnButtonUp();
 	bool HasAnimation();
 	void SetRune(int num);
+
+	void Init();
+	void Clear(); 
 }
 
