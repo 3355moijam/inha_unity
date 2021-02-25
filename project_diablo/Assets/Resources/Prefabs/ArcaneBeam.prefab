@@ -53,6 +53,7 @@ MonoBehaviour:
   textureScrollSpeed: 8
   textureLengthScale: 1
   beamRange: 10
+  isPierce: 0
 --- !u!1001 &8541068978226342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,6 +373,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 433518, guid: 1bbb81013cb2ca248a474e0a154d3499, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8257788, guid: 1bbb81013cb2ca248a474e0a154d3499, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 10864654, guid: 1bbb81013cb2ca248a474e0a154d3499, type: 3}

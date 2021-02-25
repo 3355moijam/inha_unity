@@ -4,14 +4,13 @@ using UnityEngine;
 using FunctionLibrary;
 public class ArcaneBeam : MonoBehaviour, IRune
 {
-	public GameObject[] effects;
-	private GameObject[] instances;
+	public GameObject effect;
+	private GameObject instance;
 	Transform spawnTransform;
 	// Start is called before the first frame update
 	void Start()
 	{
-		instances = new GameObject[3];
-		spawnTransform = GameManager.Instance.player.gameObject.transform.Find("Magic Spawn Left");
+		spawnTransform = GameObject.Find("Magic Spawn Pos").transform;
 	}
 
 	// Update is called once per frame
@@ -49,14 +48,13 @@ public class ArcaneBeam : MonoBehaviour, IRune
 
 	public void Init()
 	{
-
-		instances[0] = Instantiate(effects[0], spawnTransform);
-		instances[1] = Instantiate(effects[1], spawnTransform);
-		instances[2] = Instantiate(effects[2], spawnTransform);
+		instance = Instantiate(effect, spawnTransform);
+		instance.transform.SetParent(spawnTransform);
 	}
 
 	public void Clear()
 	{
-
+		Destroy(instance);
+		instance = null;
 	}
 }

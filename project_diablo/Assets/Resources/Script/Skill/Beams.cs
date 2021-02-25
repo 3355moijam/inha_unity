@@ -17,7 +17,6 @@ public class Beams : MonoBehaviour, ISkill
     // Update is called once per frame
     void Update()
     {
-        
     }
 
 	void ISkill.OnButtonDown()

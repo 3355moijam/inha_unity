@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour
         
     }
 
-	private void OnDrawGizmos()
-	{
-        Gizmos.color = Color.black;
-        Gizmos.DrawSphere(mouseHit.point, 1);
+	//private void OnDrawGizmos()
+	//{
+	//	Gizmos.color = Color.black;
+	//	Gizmos.DrawSphere(mouseHit.point, 1);
 
-    }
+	//}
 }

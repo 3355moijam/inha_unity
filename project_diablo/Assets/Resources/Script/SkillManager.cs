@@ -21,6 +21,14 @@ public class SkillManager : MonoBehaviour
             return sInstance;
 		}
 	}
+
+    void Init()
+    {
+        mainSkills = new ISkill[3];
+        mainSkills[0] = GetComponentInChildren<Beams>();
+        SetMainSkill(0);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,12 +45,5 @@ public class SkillManager : MonoBehaviour
     {
         mainSkill = mainSkills[num % mainSkills.Length];
         //useMainSkill = new PlayerAction(selectedMainSkill.OnButton);
-    }
-
-    void Init()
-	{
-        mainSkills = new ISkill[3];
-        mainSkills[0] = GetComponentInChildren<Beams>();
-        SetMainSkill(0);
     }
 }

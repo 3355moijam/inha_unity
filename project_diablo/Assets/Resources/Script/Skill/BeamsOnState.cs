@@ -9,6 +9,7 @@ public class BeamsOnState : StateMachineBehaviour
 	{
 		Debug.Log("Beams Enter");
 		// beam instantiate
+		SkillManager.Instance.MainSkill.Init();
 	}
 
 	public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -21,7 +22,9 @@ public class BeamsOnState : StateMachineBehaviour
 	{
 		Debug.Log("Beams Exit");
 		// beam destroy
-		
+		SkillManager.Instance.MainSkill.Clear();
+
+
 	}
 
 

@@ -42,6 +42,7 @@ public class BeamEffect : MonoBehaviour
         line.positionCount = 2;
         line.SetPosition(0, start);
         Vector3 dir = GameManager.Instance.mouseHit.point - start;
+        dir = GameManager.Instance.player.transform.forward;
         dir.y = 0;
         dir.Normalize();
 
@@ -73,16 +74,32 @@ public class BeamEffect : MonoBehaviour
         dir.y = 0;
         dir.Normalize();
 
-        Vector3 end = Vector3.zero;
+        Vector3 end = start + (dir * beamRange);
         RaycastHit[] hits = Physics.RaycastAll(start, dir, beamRange);
-        Array.Sort(hits, )
+        Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
 
-        if (Physics.Raycast(start, dir, out hit, beamRange))
-            end = hit.point - (dir * beamEndOffset);
-        else
-            end = start + (dir * beamRange);
+		foreach (RaycastHit target in hits)
+		{
+            // 플레이어는 무시, 몬스터는 관통, 기타 오브젝트는 break
+            if (target.transform.CompareTag("Player"))
+                continue;
+            else if (target.transform.CompareTag("Enemy"))
+			{
+                // IEnemy컴포넌트 구하기
+                // 대미지 보내기
+			}
+            else
+			{
+                end = target.point - (dir * beamEndOffset);
+			}                
+        }
 
-        beamEnd.transform.position = end;
+		//if (Physics.Raycast(start, dir, out hit, beamRange))
+		//end = hit.point - (dir * beamEndOffset);
+		//else
+		//end = start + (dir * beamRange);
+
+		beamEnd.transform.position = end;
         line.SetPosition(1, end);
 
         beamStart.transform.LookAt(end);
@@ -102,6 +119,7 @@ public class BeamEffect : MonoBehaviour
         dir.Normalize();
         target = transform.position + dir * beamRange;
         //Gizmos.DrawLine(transform.position, target);
-        Gizmos.DrawLine(line.GetPosition(0), line.GetPosition(1));
+        if (line != null)
+            Gizmos.DrawLine(line.GetPosition(0), line.GetPosition(1));
 	}
 }
