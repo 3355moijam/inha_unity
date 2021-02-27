@@ -34,9 +34,9 @@ public abstract class BaseEnemy : MonoBehaviour//, IEnemy
 
 		AfterDeadProcess();
 
-		yield return new WaitForSeconds(10.0f);
+		//yield return new WaitForSeconds(10.0f);
 
-		Destroy(gameObject);
+		Destroy(gameObject, 10.0f);
 	}
 
 	/// <summary>
