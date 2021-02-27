@@ -7,13 +7,17 @@ using UnityEngine.PlayerLoop;
 using DG.Tweening;
 public class Player : MonoBehaviour
 {
-	NavMeshAgent sAgent = null;
+	//NavMeshAgent Agent = null;
     [HideInInspector]
-    public NavMeshAgent agent { get => sAgent; }
-	Animator sAnimator = null;
-    [HideInInspector]
-    public Animator animator { get => sAnimator; }
+    public NavMeshAgent Agent { get; private set; }
 
+	//Animator animator = null;
+    [HideInInspector]
+    public Animator animator { get; private set; }
+
+    
+    public float AttackPoint { get; private set; }
+    public float DefencePoint { get; private set; }
 
     Vector3 nextNode;
 
@@ -29,9 +33,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-	    sAgent = GetComponent<NavMeshAgent>();
-        sAgent.updateRotation = false;
-	    sAnimator = GetComponent<Animator>();
+        Agent = GetComponent<NavMeshAgent>();
+        Agent.updateRotation = false;
+        animator = GetComponent<Animator>();
         
         
 
@@ -41,6 +45,10 @@ public class Player : MonoBehaviour
 		//ISkill test = SkillManager.Instance.MainSkill;
 
 		useMainSkill = new PlayerAction(SkillManager.Instance.MainSkill.OnButton);
+
+
+        AttackPoint = 30;
+        DefencePoint = 20;
 
 		GameManager.Instance.player = this;
     }
@@ -54,7 +62,7 @@ public class Player : MonoBehaviour
         if (Actions.Count > 0)
             Actions[Actions.Count - 1]();
 
-		if (nextNode != sAgent.steeringTarget)
+		if (nextNode != Agent.steeringTarget)
 		{
             RotateToMoveDirection();
         }
@@ -63,16 +71,16 @@ public class Player : MonoBehaviour
     
     void LateUpdate()
     {
-	    sAnimator.SetFloat("Speed", sAgent.velocity.magnitude);
+	    animator.SetFloat("Speed", Agent.velocity.magnitude);
     }
 	void SetDestination()
 	{
 		
-        sAgent.destination = GameManager.Instance.mouseHit.point;
-        sAgent.stoppingDistance = 1.0f;
-        sAgent.isStopped = false;
+        Agent.destination = GameManager.Instance.mouseHit.point;
+        Agent.stoppingDistance = 1.0f;
+        Agent.isStopped = false;
 		RotateToMoveDirection();
-        //sAnimator.SetTrigger("StartRun");
+        //animator.SetTrigger("StartRun");
         
         
 	}
@@ -82,17 +90,18 @@ public class Player : MonoBehaviour
     void RotateToMoveDirection()
 	{
         
-        nextNode = sAgent.steeringTarget;
+        nextNode = Agent.steeringTarget;
         Vector3 lookRotation = nextNode - transform.position;
-        transform.DORotateQuaternion(Quaternion.LookRotation(lookRotation), 0.3f);
+        if (lookRotation != Vector3.zero)
+            transform.DORotateQuaternion(Quaternion.LookRotation(lookRotation), 0.3f);
         
     }
 
     public void MoveStop()
 	{
-        sAgent.isStopped = true;
-        sAgent.ResetPath();
-        nextNode = sAgent.steeringTarget;
+        Agent.isStopped = true;
+        Agent.ResetPath();
+        nextNode = Agent.steeringTarget;
     }
 
     void UseMainSkill()
@@ -153,17 +162,17 @@ public class Player : MonoBehaviour
     {
         //if (agent.path.corners.Length == 0)
         //	return;
-        if (sAgent == null)
+        if (Agent == null)
             return;
-        for (int i = 0; i < sAgent.path.corners.Length; i++)
+        for (int i = 0; i < Agent.path.corners.Length; i++)
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(sAgent.path.corners[i], 0.3f);
+            Gizmos.DrawSphere(Agent.path.corners[i], 0.3f);
 
             if (i > 0)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawLine(sAgent.path.corners[i - 1], sAgent.path.corners[i]);
+                Gizmos.DrawLine(Agent.path.corners[i - 1], Agent.path.corners[i]);
             }
         }
     }
