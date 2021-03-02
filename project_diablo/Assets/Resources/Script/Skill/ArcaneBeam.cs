@@ -50,6 +50,9 @@ public class ArcaneBeam : MonoBehaviour, IRune
 
 	public void Init()
 	{
+		if (instance != null)
+			return;
+
 		instance = Instantiate(effect, spawnTransform);
 		instance.transform.SetParent(spawnTransform);
 	}

@@ -77,11 +77,46 @@ public class Player : MonoBehaviour
             RotateToMoveDirection();
         }
 
+        
+
     }
     
     void LateUpdate()
     {
 	    animator.SetFloat("Speed", Agent.velocity.magnitude);
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            animator.SetBool("test1", true);
+            animator.SetTrigger("StartRun");
+        }
+        else if (Input.GetKey(KeyCode.Alpha1))
+		{
+
+		}
+        else if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            animator.SetBool("test1", false);
+            animator.SetTrigger("Unset");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            animator.SetBool("test2", true);
+            animator.SetTrigger("StartBeams");
+        }
+        else if (Input.GetKey(KeyCode.Alpha2))
+		{
+
+		}
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            animator.SetBool("test2", false);
+            animator.SetTrigger("Unset");
+        }
+
+        if (Input.GetKey(KeyCode.Alpha3))
+            animator.SetTrigger("Unset");
     }
 	void SetDestination()
 	{
