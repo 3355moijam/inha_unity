@@ -29,7 +29,6 @@ public class BeamEffect : MonoBehaviour
     bool coolDownOn = false;
     void Start()
     {
-        
         line = beam.GetComponent<LineRenderer>();
         if (isPierce)
             BeamType = new SkillType(ShootPierceBeamToMouse);
@@ -112,9 +111,10 @@ public class BeamEffect : MonoBehaviour
             // 플레이어는 무시, 몬스터는 관통, 기타 오브젝트는 break
             if (target.transform.CompareTag("Player"))
                 continue;
-            else if (coolDownOn && target.transform.CompareTag("Enemy"))
+            else if (target.transform.CompareTag("Enemy"))
             {
-                DamageToTarget(target.transform.GetComponent<BaseEnemy>());
+                if (coolDownOn)
+                    DamageToTarget(target.transform.GetComponent<BaseEnemy>());
             }
             else
             {

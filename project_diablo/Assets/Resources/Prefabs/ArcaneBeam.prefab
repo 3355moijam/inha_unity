@@ -54,6 +54,7 @@ MonoBehaviour:
   textureLengthScale: 1
   beamRange: 10
   isPierce: 0
+  DamageMultiplier: 1
 --- !u!1001 &8541068978226342
 PrefabInstance:
   m_ObjectHideFlags: 0

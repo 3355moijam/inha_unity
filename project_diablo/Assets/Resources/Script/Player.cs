@@ -15,7 +15,11 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public Animator animator { get; private set; }
 
-    
+    public float MaxHP { get; private set; }
+    public float CurrentHP { get; private set; }
+    public float MaxMP { get; private set; }
+    public float CurrentMP { get; private set; }
+
     public float AttackPoint { get; private set; }
     public float DefencePoint { get; private set; }
 
@@ -46,6 +50,12 @@ public class Player : MonoBehaviour
 
 		useMainSkill = new PlayerAction(SkillManager.Instance.MainSkill.OnButton);
 
+
+        MaxHP = 100;
+        CurrentHP = MaxHP;
+
+        MaxMP = 100;
+        CurrentMP = MaxMP;
 
         AttackPoint = 30;
         DefencePoint = 20;
@@ -157,6 +167,15 @@ public class Player : MonoBehaviour
             }
 		}
     }
+
+    public bool UseMana(float value)
+	{
+        if (CurrentMP < value)
+            return false;
+
+        CurrentMP -= value;
+        return true;
+	}
 
     private void OnDrawGizmos()
     {

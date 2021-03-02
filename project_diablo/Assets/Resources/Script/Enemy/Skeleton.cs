@@ -9,7 +9,9 @@ public class Skeleton : BaseEnemy
 	void Start()
     {
 		base.Init();
-		HP = 100;
+		if (MaxHP == 0)
+			MaxHP = 30;
+		CurrentHP = MaxHP;
 		DefencePoint = 20;
 		AttackPoint = 30;
     }

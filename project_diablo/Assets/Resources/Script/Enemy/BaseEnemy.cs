@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public abstract class BaseEnemy : MonoBehaviour//, IEnemy
 {
-	protected float HP;
+	public float MaxHP;
+	protected float CurrentHP;
 	public float DefencePoint { get; protected set; }
 	public float AttackPoint { get; protected set; }
 
@@ -15,17 +16,17 @@ public abstract class BaseEnemy : MonoBehaviour//, IEnemy
 	virtual public void Hitted(float damage)
 	{
 		animator.SetTrigger("Hit");
-		HP -= damage;
+		CurrentHP -= damage;
 		Debug.Log(gameObject + " Hit!");
-		if (HP <= 0)
+		if (CurrentHP <= 0)
 			StartCoroutine(Dead());
 	}
 
 	virtual protected IEnumerator Dead()
 	{
 		GetComponent<Collider>().enabled = false;
-		agent.enabled = false;
 		agent.isStopped = true;
+		agent.enabled = false;
 		animator.SetTrigger("Dead");
 
 		DeadProcess();
