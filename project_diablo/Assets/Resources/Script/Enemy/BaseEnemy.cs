@@ -13,8 +13,23 @@ public abstract class BaseEnemy : MonoBehaviour//, IEnemy
 	protected Animator animator;
 	protected NavMeshAgent agent;
 
-	virtual public void Hitted(float damage)
+	protected float tickDamageCooltime = 0.5f;
+	protected bool tickable = true;
+
+	virtual public void Hitted(float damage, bool isTickDamage = false, float tickCool = 0)
 	{
+		if(isTickDamage)
+		{
+			if(tickable)
+			{
+				tickable = false;
+				Invoke("SetTickableTrue", tickCool == 0 ? tickDamageCooltime : tickCool);
+			}
+			else
+			{
+				return;
+			}
+		}
 		animator.SetTrigger("Hit");
 		CurrentHP -= damage;
 		Debug.Log(gameObject + " Hit!");
@@ -39,6 +54,8 @@ public abstract class BaseEnemy : MonoBehaviour//, IEnemy
 
 		Destroy(gameObject, 10.0f);
 	}
+
+	void SetTickableTrue() => tickable = true;
 
 	/// <summary>
 	///	HP, 방어력, 공격력은 별도 처리 필요

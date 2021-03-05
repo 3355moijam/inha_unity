@@ -49,11 +49,11 @@ MonoBehaviour:
   beamStart: {fileID: 7321443397222350771}
   beam: {fileID: 2608796668950555711}
   beamEnd: {fileID: 8541068978138090}
-  beamEndOffset: 1
+  beamEndOffset: 0.3
   textureScrollSpeed: 8
   textureLengthScale: 1
   beamRange: 10
-  isPierce: 0
+  isPierce: 1
   DamageMultiplier: 1
 --- !u!1001 &8541068978226342
 PrefabInstance:

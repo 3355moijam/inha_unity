@@ -17,6 +17,7 @@ public class BeamEffect : MonoBehaviour
     public float textureScrollSpeed = 8f; //How fast the texture scrolls along the beam
     public float textureLengthScale = 1f; //Length of the beam texture
     public float beamRange = 10f;
+    float beamRadius = 0.1f;
     public bool isPierce = false;
     // Start is called before the first frame update
     delegate void SkillType();
@@ -24,9 +25,6 @@ public class BeamEffect : MonoBehaviour
 
     public float DamageMultiplier = 1;
 
-    float tickDamageCooltime = 0.8f;
-    float tickCount = 0;
-    bool coolDownOn = false;
     void Start()
     {
         line = beam.GetComponent<LineRenderer>();
@@ -39,25 +37,13 @@ public class BeamEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TickCount();
         BeamType();
     }
 
 	private void LateUpdate()
 	{
-        coolDownOn = false;
+        
 	}
-
-	void TickCount()
-	{
-        tickCount += Time.deltaTime;
-        if(tickCount >= tickDamageCooltime)
-		{
-            tickCount -= tickDamageCooltime;
-            coolDownOn = true;
-		}
-
-    }
 
     void ShootBeamToMouse()
     {
@@ -68,10 +54,10 @@ public class BeamEffect : MonoBehaviour
         dir = GameManager.Instance.player.transform.forward;
         dir.y = 0;
         dir.Normalize();
-
         Vector3 end = Vector3.zero;
         RaycastHit hit;
-        if (Physics.Raycast(start, dir, out hit, beamRange))
+        
+        if (Physics.SphereCast(start, beamRadius, dir, out hit, beamRange))
             end = hit.point - (dir * beamEndOffset);
         else
             end = start + (dir * beamRange);
@@ -86,9 +72,9 @@ public class BeamEffect : MonoBehaviour
         line.sharedMaterial.mainTextureScale = new Vector2(distance / textureLengthScale, 1);
         line.sharedMaterial.mainTextureOffset -= new Vector2(Time.deltaTime * textureScrollSpeed, 0);
 
-        if(coolDownOn && hit.transform != null && hit.transform.tag == "Enemy")
+        if(hit.transform != null && hit.transform.tag == "Enemy")
 		{
-            DamageToTarget(hit.transform.GetComponent<BaseEnemy>());
+            DamageToTarget(hit.transform.GetComponent<BaseEnemy>(), true);
         }
     }
 
@@ -103,7 +89,8 @@ public class BeamEffect : MonoBehaviour
         dir.Normalize();
 
         Vector3 end = start + (dir * beamRange);
-        RaycastHit[] hits = Physics.RaycastAll(start, dir, beamRange);
+        
+        RaycastHit[] hits = Physics.SphereCastAll(start, beamRadius, dir, beamRange);
         Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
         
         foreach (RaycastHit target in hits)
@@ -113,8 +100,8 @@ public class BeamEffect : MonoBehaviour
                 continue;
             else if (target.transform.CompareTag("Enemy"))
             {
-                if (coolDownOn)
-                    DamageToTarget(target.transform.GetComponent<BaseEnemy>());
+                
+                DamageToTarget(target.transform.GetComponent<BaseEnemy>(), true);
             }
             else
             {
@@ -139,10 +126,10 @@ public class BeamEffect : MonoBehaviour
         line.sharedMaterial.mainTextureOffset -= new Vector2(Time.deltaTime * textureScrollSpeed, 0);
     }
 
-    void DamageToTarget(BaseEnemy target)
+    void DamageToTarget(BaseEnemy target, bool isTickDamage = false)
 	{
         float damage = AttackMinusDef(target) * DamageMultiplier;
-        target.Hitted(damage);
+        target.Hitted(damage, isTickDamage);
 	}
 
     float AttackMinusDef(BaseEnemy target)
@@ -166,7 +153,12 @@ public class BeamEffect : MonoBehaviour
         dir.Normalize();
         target = transform.position + dir * beamRange;
         //Gizmos.DrawLine(transform.position, target);
+
         if (line != null)
+        {
             Gizmos.DrawLine(line.GetPosition(0), line.GetPosition(1));
+            Gizmos.DrawWireSphere((line.GetPosition(0) + line.GetPosition(1)) * 0.5f, beamRadius);
+            Gizmos.DrawWireSphere(line.GetPosition(1), beamRadius);
+        }
 	}
 }

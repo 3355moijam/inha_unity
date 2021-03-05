@@ -16,7 +16,7 @@ namespace FunctionLibrary
 		static public bool CheckRaycast(out RaycastHit hit)
 		{
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+			
 			return Physics.Raycast(ray, out hit);
 		}
 	}
