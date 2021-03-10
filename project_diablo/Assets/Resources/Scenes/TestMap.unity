@@ -1932,6 +1932,10 @@ PrefabInstance:
       propertyPath: MaxHP
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5804943753429592683, guid: 0dba65b355d2ac54aad64229cab1c5bd, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dba65b355d2ac54aad64229cab1c5bd, type: 3}
 --- !u!1 &184293040
@@ -4553,6 +4557,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 462548, guid: 0dba65b355d2ac54aad64229cab1c5bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804943753429592683, guid: 0dba65b355d2ac54aad64229cab1c5bd, type: 3}
+      propertyPath: m_DirtyAABB
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
