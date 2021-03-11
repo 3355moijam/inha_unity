@@ -12,6 +12,7 @@ public abstract class BaseEnemy : MonoBehaviour//, IEnemy
 
 	protected Animator animator;
 	protected NavMeshAgent agent;
+	protected List<Material> materials;
 
 	protected float tickDamageCooltime = 0.5f;
 	protected bool tickable = true;
@@ -64,6 +65,14 @@ public abstract class BaseEnemy : MonoBehaviour//, IEnemy
 	{
 		animator = GetComponent<Animator>();
 		agent = GetComponent<NavMeshAgent>();
+
+		materials = new List<Material>();
+		Renderer[] skinnedMeshRenderers = GetComponentsInChildren<Renderer>();
+		foreach (Renderer renderer in skinnedMeshRenderers)
+		{
+			materials.Add(renderer.material);
+		}
+
 		//agent.isStopped = true;
 		gameObject.tag = "Enemy";
 	}
@@ -77,4 +86,22 @@ public abstract class BaseEnemy : MonoBehaviour//, IEnemy
 	/// 사망 애니메이션이 끝난 후 처리할 함수
 	/// </summary>
 	abstract protected void AfterDeadProcess();
+
+	private void OnMouseEnter()
+	{
+		//Debug.Log("Mouse Enter");
+		foreach (Material material in materials)
+		{
+			material.SetFloat("_OutlineOn", 1);
+		}
+	}
+
+	private void OnMouseExit()
+	{
+		//Debug.Log("Mouse Exit");
+		foreach (Material material in materials)
+		{
+			material.SetFloat("_OutlineOn", 0);
+		}
+	}
 }
