@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     public float AttackPoint { get; private set; }
     public float DefencePoint { get; private set; }
 
-    Vector3 nextNode;
+    Vector3 nextMoveToNode;
 
     //skill
     
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         if (Actions.Count > 0)
             Actions[Actions.Count - 1]();
 
-		if (nextNode != Agent.steeringTarget)
+		if (nextMoveToNode != Agent.steeringTarget)
 		{
             RotateToMoveDirection();
         }
@@ -135,8 +135,8 @@ public class Player : MonoBehaviour
     void RotateToMoveDirection()
 	{
         
-        nextNode = Agent.steeringTarget;
-        Vector3 lookRotation = nextNode - transform.position;
+        nextMoveToNode = Agent.steeringTarget;
+        Vector3 lookRotation = nextMoveToNode - transform.position;
         if (lookRotation != Vector3.zero)
             transform.DORotateQuaternion(Quaternion.LookRotation(lookRotation), 0.3f);
         
@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
 	{
         Agent.isStopped = true;
         Agent.ResetPath();
-        nextNode = Agent.steeringTarget;
+        nextMoveToNode = Agent.steeringTarget;
     }
 
     void UseMainSkill()
