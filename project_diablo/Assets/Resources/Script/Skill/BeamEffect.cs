@@ -139,7 +139,9 @@ public class BeamEffect : MonoBehaviour
         return ret;
     }
 
-	private void OnDestroy()
+
+
+    private void OnDestroy()
 	{
 		
 	}

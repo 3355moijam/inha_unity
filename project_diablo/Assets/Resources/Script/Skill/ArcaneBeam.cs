@@ -7,6 +7,8 @@ public class ArcaneBeam : MonoBehaviour, IRune
 	public GameObject effect;
 	private GameObject instance;
 	Transform spawnTransform;
+	float manaCost = 5.0f;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -24,17 +26,16 @@ public class ArcaneBeam : MonoBehaviour, IRune
 		GameManager.Instance.player.MoveStop();
 		//DG.Tweening.DOTween.Kill(GameManager.Instance.player.transform);
 		GameManager.Instance.player.animator.SetTrigger("StartBeams");
+		GameManager.Instance.player.animator.SetBool("BeamsOn", true);
+		GameManager.Instance.player.animator.SetFloat("ManaCost", manaCost);
 		//LookHitPoint(hit);
 	}
 
 	public void OnButton()
 	{
-		//GameManager.Instance.player.UseMana
-		
+
 		GameManager.Instance.player.MoveStop();
 		GameManager.Instance.player.animator.SetBool("BeamsOn", true);
-		
-		//LookHitPoint(hit);
 	}
 
 	public void OnButtonUp()
@@ -62,4 +63,6 @@ public class ArcaneBeam : MonoBehaviour, IRune
 		Destroy(instance);
 		instance = null;
 	}
+
+
 }
